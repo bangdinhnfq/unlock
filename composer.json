@@ -1,0 +1,16 @@
+{
+    "name": "bangdinhnfq/unlock",
+    "description": "Unlock website",
+    "autoload": {
+        "psr-4": {
+            "Bangdinhnfq\\Unlock\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bang Dinh",
+            "email": "bang.dinh@nfq.asia"
+        }
+    ],
+    "require": {}
+}
