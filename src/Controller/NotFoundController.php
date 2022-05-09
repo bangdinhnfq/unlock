@@ -2,13 +2,13 @@
 
 namespace Bangdinhnfq\Unlock\Controller;
 
-class NotFoundController
+class NotFoundController extends BaseController
 {
     /**
      * @return string
      */
     public function notFoundAction(): string
     {
-        return 'Route not found';
+        return $this->view('error/notFound.html', []);
     }
 }

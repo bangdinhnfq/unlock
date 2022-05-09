@@ -13,9 +13,9 @@ class Application
     protected HomeController $homeController;
 
     /**
-     * @var
+     * @var NotFoundController
      */
-    protected $notFoundController;
+    protected NotFoundController $notFoundController;
 
     /**
      * @var string

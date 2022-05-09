@@ -2,13 +2,15 @@
 
 namespace Bangdinhnfq\Unlock\Controller;
 
-class HomeController
+class HomeController extends BaseController
 {
     /**
      * @return string
      */
     public function indexAction(): string
     {
-        return 'Hello from index action';
+        return $this->view('home/index.html', [
+            'data' => 'Hello from index action'
+        ]);
     }
 }
