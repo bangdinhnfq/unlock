@@ -1,6 +1,6 @@
 <?php
 
-namespace Bangdinhnfq\Tests\Manager;
+namespace Bangdinhnfq\Unlock\Tests\Manager;
 
 use Bangdinhnfq\Unlock\File\FileReader;
 use Bangdinhnfq\Unlock\Manager\MovieManager;
@@ -52,7 +52,7 @@ class MovieManagerTest extends TestCase
                         ]
                     ]
                 ],
-                'expected' =>  [
+                'expected' => [
                     $movie1,
                     $movie2,
                     $movie3,
@@ -72,7 +72,7 @@ class MovieManagerTest extends TestCase
                         ]
                     ]
                 ],
-                'expected' =>  [
+                'expected' => [
                     $movie1,
                     $movie2,
                     $movie3,

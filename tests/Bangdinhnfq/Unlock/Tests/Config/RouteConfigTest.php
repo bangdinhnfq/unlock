@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Bangdinhnfq\Tests\Config;
+namespace Bangdinhnfq\Unlock\Tests\Config;
 
 use Bangdinhnfq\Unlock\Application\Route;
 use Bangdinhnfq\Unlock\Config\RouteConfig;
@@ -11,15 +11,15 @@ use PHPUnit\Framework\TestCase;
 
 class RouteConfigTest extends TestCase
 {
-//    public function testGetNotFoundRoute()
-//    {
-//        $routeConfig = new RouteConfig();
-//        $requestMethod = 'method';
-//        $requestUri = 'uri';
-//        $route = $routeConfig::getNotFoundRoute($requestMethod, $requestUri);
-//        $expectedRoute = new Route('method', 'uri', NotFoundController::class, 'index');
-//        $this->assertEquals($expectedRoute, $route);
-//    }
+    public function testGetNotFoundRoute()
+    {
+        $routeConfig = new RouteConfig();
+        $requestMethod = 'method';
+        $requestUri = 'uri';
+        $route = $routeConfig::getNotFoundRoute($requestMethod, $requestUri);
+        $expectedRoute = new Route('method', 'uri', NotFoundController::class, 'index');
+        $this->assertEquals($expectedRoute, $route);
+    }
 
     /**
      * @dataProvider fibonacciDataProvider

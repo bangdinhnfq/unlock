@@ -8,7 +8,7 @@
     },
     "autoload-dev": {
         "prs-4": {
-            "Bangdinhnfq\\Tests\\": "tests/"
+            "Bangdinhnfq\\Unlock\\Tests\\": "tests/"
         }
     },
     "authors": [
