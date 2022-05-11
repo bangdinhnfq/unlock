@@ -6,11 +6,18 @@
             "Bangdinhnfq\\Unlock\\": "src/"
         }
     },
+    "autoload-dev": {
+        "prs-4": {
+            "Bangdinhnfq\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Bang Dinh",
             "email": "bang.dinh@nfq.asia"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    }
 }

@@ -2,15 +2,18 @@
 
 namespace Bangdinhnfq\Unlock\Controller;
 
+use Bangdinhnfq\Unlock\Http\Request;
+use Bangdinhnfq\Unlock\Http\Response;
+
 class HomeController extends BaseController
 {
     /**
-     * @return string
+     * @param Request $request
+     * @param Response $response
+     * @return Response
      */
-    public function indexAction(): string
+    public function indexAction(Request $request, Response $response): Response
     {
-        return $this->view('home/index.html', [
-            'data' => 'Hello from index action'
-        ]);
+        return $response->view(Response::HTTP_STATUS_OK, 'index/home.html', []);
     }
 }

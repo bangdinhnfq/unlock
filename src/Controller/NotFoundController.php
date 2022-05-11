@@ -2,13 +2,18 @@
 
 namespace Bangdinhnfq\Unlock\Controller;
 
+use Bangdinhnfq\Unlock\Http\Request;
+use Bangdinhnfq\Unlock\Http\Response;
+
 class NotFoundController extends BaseController
 {
     /**
-     * @return string
+     * @param Request $request
+     * @param Response $response
+     * @return Response
      */
-    public function notFoundAction(): string
+    public function notFoundAction(Request $request, Response $response): Response
     {
-        return $this->view('error/notFound.html', []);
+        return $response->view(Response::HTTP_STATUS_OK, 'error/notFound.html', []);
     }
 }
