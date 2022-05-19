@@ -2,7 +2,6 @@
 
 namespace Bangdinhnfq\Unlock\Application;
 
-use Bangdinhnfq\Unlock\Config\RouteConfig;
 use Bangdinhnfq\Unlock\Http\Request;
 
 class Application

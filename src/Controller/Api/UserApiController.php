@@ -25,11 +25,10 @@ class UserApiController extends ApiControllerAbstract
             $userTransfer->setData($params);
             $userValidator->validate($userTransfer);
             $user = $userService->login($userTransfer);
-            $userTransform = $transformer->transform($user);
-            $response->success($userTransform);
+            $data = $transformer->transform($user);
+            $response->success($data);
         } catch (Exception $exception) {
             $response->error();
         }
     }
-
 }

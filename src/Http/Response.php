@@ -2,6 +2,8 @@
 
 namespace Bangdinhnfq\Unlock\Http;
 
+use Bangdinhnfq\Unlock\Transformer\TransformerInterface;
+
 class Response
 {
     const HTTP_STATUS_OK = 200;
@@ -36,7 +38,7 @@ class Response
         return $this;
     }
 
-    public function success(bool $user)
+    public function success(array $data)
     {
     }
 

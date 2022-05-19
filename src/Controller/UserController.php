@@ -34,7 +34,7 @@ class UserController extends ControllerAbstract
             $user = $userService->login($userTransfer);
             $response->view(
                 200,
-                'user.html',
+                'login.html',
                 [
                     'user' => $user
                 ]
