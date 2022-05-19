@@ -7,6 +7,7 @@ use Bangdinhnfq\Unlock\Transformer\TransformerInterface;
 class Response
 {
     const HTTP_STATUS_OK = 200;
+    const HTTP_STATUS_NOT_FOUND = 404;
 
     /**
      * @var int

@@ -12,10 +12,8 @@ use Bangdinhnfq\Unlock\Service\UserService;
 use Bangdinhnfq\Unlock\Transfer\UserTransfer;
 use Bangdinhnfq\Unlock\Validator\UserValidator;
 
-class UserController extends AbstractController
+class UserLoginController extends AbstractController
 {
-    private Request $request;
-    private Response $response;
     private UserValidator $userValidator;
     private UserService $userService;
     private SessionService $sessionService;
@@ -34,10 +32,9 @@ class UserController extends AbstractController
         UserService $userService,
         SessionService $sessionService
     ) {
-        $this->request = $request;
-        $this->response = $response;
-        $this->userService = $userService;
+        parent::__construct($request, $response);
         $this->userValidator = $userValidator;
+        $this->userService = $userService;
         $this->sessionService = $sessionService;
     }
 
@@ -48,7 +45,7 @@ class UserController extends AbstractController
     {
         $template = 'user/login.php';
         if ($this->request->isGet()) {
-            return $this->response->view(200, $template);
+            return $this->response->view(Response::HTTP_STATUS_OK, $template);
         }
         try {
             $params = $this->request->getFormParams();
@@ -59,7 +56,7 @@ class UserController extends AbstractController
             $this->sessionService->set('user', $user);
             return $this->response->redirect('/');
         } catch (PasswordInvalidException|ValidationException|UserNotFoundException $exception) {
-            return $this->response->view(200, $template, [
+            return $this->response->view(Response::HTTP_STATUS_OK, $template, [
                 'message' => $exception->getMessage(),
             ]);
         }
