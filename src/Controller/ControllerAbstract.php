@@ -2,6 +2,6 @@
 
 namespace Bangdinhnfq\Unlock\Controller;
 
-abstract class BaseController
+abstract class ControllerAbstract
 {
 }

@@ -35,4 +35,12 @@ class Response
 
         return $this;
     }
+
+    public function success(bool $user)
+    {
+    }
+
+    public function error($message = 'Error')
+    {
+    }
 }
