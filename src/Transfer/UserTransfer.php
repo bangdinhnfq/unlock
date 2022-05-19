@@ -56,7 +56,7 @@ class UserTransfer implements TransferInterface
      */
     public function fromArray(array $params)
     {
-        $this->username = $params['username'] ?? '';
-        $this->password = $params['password'] ?? '';
+        $this->username = $params['username'] ?? null;
+        $this->password = $params['password'] ?? null;
     }
 }
