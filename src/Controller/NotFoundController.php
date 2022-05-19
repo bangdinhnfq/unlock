@@ -12,6 +12,6 @@ class NotFoundController extends AbstractController
     {
         $template = 'error/404.php';
 
-        return $this->response->view(Response::HTTP_STATUS_NOT_FOUND, $template);
+        return $this->response->view($template, [], Response::HTTP_STATUS_NOT_FOUND);
     }
 }

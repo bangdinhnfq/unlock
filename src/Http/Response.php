@@ -7,6 +7,7 @@ use Bangdinhnfq\Unlock\Transformer\TransformerInterface;
 class Response
 {
     const HTTP_STATUS_OK = 200;
+    const HTTP_STATUS_BAD_REQUEST = 400;
     const HTTP_STATUS_NOT_FOUND = 404;
 
     /**
@@ -30,7 +31,7 @@ class Response
      * @param array $options
      * @return $this
      */
-    public function view(int $statusCode, string $template, array $options = []): Response
+    public function view(string $template, array $options = [], int $statusCode = Response::HTTP_STATUS_OK): Response
     {
         $this->statusCode = $statusCode;
         $this->template = $template;
@@ -39,14 +40,28 @@ class Response
         return $this;
     }
 
-    public function success(array $data): Response
+    public function success(array $data = [], $statusCode = Response::HTTP_STATUS_OK): Response
     {
-        return $this;
+        $response = [
+            'status' => 'success',
+            'data' => $data
+        ];
+        http_response_code($statusCode);
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($response);
+        die;
     }
 
-    public function error($message = 'Error'): Response
+    public function error($message = 'Some thing wrong', $statusCode = Response::HTTP_STATUS_BAD_REQUEST): Response
     {
-        return $this;
+        $response = [
+            'status' => 'error',
+            'message' => $message
+        ];
+        http_response_code($statusCode);
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($response);
+        die;
     }
 
     public function redirect(string $route): Response

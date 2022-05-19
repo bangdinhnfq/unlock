@@ -14,8 +14,6 @@ use Bangdinhnfq\Unlock\Validator\UserValidator;
 
 class UserApiController extends AbstractApiController
 {
-    private Request $request;
-    private Response $response;
     private UserValidator $userValidator;
     private UserService $userService;
     private UserTransformer $transformer;
@@ -27,6 +25,7 @@ class UserApiController extends AbstractApiController
         UserService $userService,
         UserTransformer $transformer
     ) {
+        parent::__construct($request, $response);
         $this->request = $request;
         $this->response = $response;
         $this->userValidator = $userValidator;

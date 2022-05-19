@@ -45,7 +45,7 @@ class UserLoginController extends AbstractController
     {
         $template = 'user/login.php';
         if ($this->request->isGet()) {
-            return $this->response->view(Response::HTTP_STATUS_OK, $template);
+            return $this->response->view($template);
         }
         try {
             $params = $this->request->getFormParams();
@@ -56,9 +56,13 @@ class UserLoginController extends AbstractController
             $this->sessionService->set('user', $user);
             return $this->response->redirect('/');
         } catch (PasswordInvalidException|ValidationException|UserNotFoundException $exception) {
-            return $this->response->view(Response::HTTP_STATUS_OK, $template, [
-                'message' => $exception->getMessage(),
-            ]);
+            return $this->response->view(
+                $template,
+                [
+                    'message' => $exception->getMessage(),
+                ],
+                Response::HTTP_STATUS_BAD_REQUEST
+            );
         }
     }
 }

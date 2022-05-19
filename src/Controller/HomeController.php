@@ -13,6 +13,6 @@ class HomeController extends AbstractController
     {
         $template = 'home/index.php';
 
-        return $this->response->view(Response::HTTP_STATUS_OK, $template);
+        return $this->response->view($template);
     }
 }

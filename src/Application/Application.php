@@ -6,6 +6,7 @@ use Bangdinhnfq\Unlock\Controller\HomeController;
 use Bangdinhnfq\Unlock\Controller\NotFoundController;
 use Bangdinhnfq\Unlock\Controller\UserLoginController;
 use Bangdinhnfq\Unlock\Http\Request;
+use Bangdinhnfq\Unlock\Http\Response;
 
 class Application
 {
@@ -14,7 +15,7 @@ class Application
         $container = new Container();
         $method = Request::getRequestMethod();
         $uri = Request::getRequestUri();
-        $routes = $this->getRoutes();
+        $routes = RouteConfig::getRoutes();
         $controllerClassName = NotFoundController::class;
         $actionName = NotFoundController::INDEX_ACTION;
         foreach ($routes as $route) {
@@ -26,18 +27,10 @@ class Application
         }
 
         $controller = $container->make($controllerClassName);
+        /** @var Response $response */
         $response = $controller->{$actionName}();
-        require Directory::getViewDir() . $response->getTemplate();
-    }
+        http_response_code($response->getStatusCode());
 
-    /**
-     * @return Route[]
-     */
-    protected function getRoutes(): array
-    {
-        return [
-            new Route(Request::METHOD_GET, '/', HomeController::class, 'indexAction'),
-            new Route(Request::METHOD_GET, '/login', UserLoginController::class, 'loginAction')
-        ];
+        require Directory::getViewDir() . $response->getTemplate();
     }
 }
