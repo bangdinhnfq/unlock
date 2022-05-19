@@ -7,12 +7,12 @@ class UserTransfer implements TransferInterface
     /**
      * @var string|null
      */
-    private $username;
+    private ?string $username;
 
     /**
      * @var string|null
      */
-    private $password;
+    private ?string $password;
 
     /**
      * @return string|null
@@ -50,9 +50,13 @@ class UserTransfer implements TransferInterface
         return $this;
     }
 
-    public function setData(array $params)
+    /**
+     * @param array $params
+     * @return void
+     */
+    public function fromArray(array $params)
     {
-        $this->username = $params['username'];
-        $this->password = $params['password'];
+        $this->username = $params['username'] ?? '';
+        $this->password = $params['password'] ?? '';
     }
 }

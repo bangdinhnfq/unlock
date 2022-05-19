@@ -35,4 +35,9 @@ class Request
     {
         return [];
     }
+
+    public function isGet(): bool
+    {
+        return true;
+    }
 }

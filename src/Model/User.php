@@ -2,103 +2,120 @@
 
 namespace Bangdinhnfq\Unlock\Model;
 
+use DateTime;
+
 class User implements ModelInterface
 {
-    private $id;
-
-    private $name;
-
-    private $username;
-
-    private $password;
-
-    private $createdAt;
+    /**
+     * @var int
+     */
+    private int $id;
 
     /**
-     * @return mixed
+     * @var string
      */
-    public function getId()
+    private string $name;
+
+    /**
+     * @var string
+     */
+    private string $username;
+
+    /**
+     * @var string
+     */
+    private string $password;
+
+    /**
+     * @var DateTime
+     */
+    private DateTime $createdAt;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      * @return User
      */
-    public function setId($id)
+    public function setId(int $id): User
     {
         $this->id = $id;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      * @return User
      */
-    public function setName($name)
+    public function setName(string $name): User
     {
         $this->name = $name;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->username;
     }
 
     /**
-     * @param mixed $username
+     * @param string $username
      * @return User
      */
-    public function setUsername($username)
+    public function setUsername(string $username): User
     {
         $this->username = $username;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
     }
 
     /**
-     * @param mixed $password
+     * @param string $password
      * @return User
      */
-    public function setPassword($password)
+    public function setPassword(string $password): User
     {
         $this->password = $password;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
     /**
-     * @param mixed $createdAt
+     * @param DateTime $createdAt
      * @return User
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(DateTime $createdAt): User
     {
         $this->createdAt = $createdAt;
         return $this;
