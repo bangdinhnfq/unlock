@@ -1,4 +1,4 @@
-<?php require __DIR__ . '/../particles/header.php' ?>
+<?php require __DIR__ . '/../partial/header.php' ?>
 <main role="main">
     <section class="jumbotron text-center">
         <div class="container">
@@ -18,4 +18,4 @@
         </div>
     </section>
 </main>
-<?php require __DIR__ . '/../particles/footer.php' ?>
+<?php require __DIR__ . '/../partial/footer.php' ?>
