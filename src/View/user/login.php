@@ -1,17 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <title>Unlock</title>
-    <?php require __DIR__ . '/../particles/head.php'?>
-</head>
-<body>
-<?php require __DIR__ . '/../particles/nav.php'?>
-
+<?php require __DIR__ . '/../particles/header.php' ?>
 <main role="main">
-
     <section class="jumbotron text-center">
         <div class="container">
-            <form class="form-signin">
+            <form class="form-signin" action="/login" method="post">
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
                 <label for="inputEmail" class="sr-only">Email address</label>
                 <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
@@ -27,8 +18,4 @@
         </div>
     </section>
 </main>
-
-<?php require __DIR__ . '/../particles/footer.php'?>
-
-</body>
-</html>
+<?php require __DIR__ . '/../particles/footer.php' ?>
