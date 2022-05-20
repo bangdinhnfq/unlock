@@ -6,17 +6,25 @@ use Bangdinhnfq\Unlock\Model\User;
 
 class UserRepository extends AbstractRepository
 {
+    const TABLE = 'user';
+
     /**
      * @param string $username
      * @return User
      */
     public function findUserByUserName(string $username): User
     {
-        $this->getDatabase()->select($username)->from()->where();
+        $result = $this->getDatabase()
+            ->select('*')
+            ->from(static::TABLE)
+            ->where('username = :username')
+            ->setParameter('username', $username)
+            ->getResult();
+
         $user = new User();
-        $user->setPassword('hashedPassword');
-        $user->setName('Name of User');
-        $user->setUsername($username);
+        $user->setPassword($result['password'])
+            ->setName($result['name'])
+            ->setUsername($result['username']);
 
         return $user;
     }

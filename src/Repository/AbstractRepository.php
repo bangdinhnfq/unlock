@@ -2,33 +2,33 @@
 
 namespace Bangdinhnfq\Unlock\Repository;
 
-use Bangdinhnfq\Unlock\Application\DatabaseConnection;
+use Bangdinhnfq\Unlock\Application\Database;
 
 abstract class AbstractRepository
 {
     /**
-     * @var DatabaseConnection
+     * @var Database
      */
-    private DatabaseConnection $database;
+    private Database $database;
 
     public function __construct()
     {
-        $this->database = DatabaseConnection::getConnection();
+        $this->database = Database::getConnection();
     }
 
     /**
-     * @return DatabaseConnection
+     * @return Database
      */
-    public function getDatabase(): DatabaseConnection
+    public function getDatabase(): Database
     {
         return $this->database;
     }
 
     /**
-     * @param DatabaseConnection $database
+     * @param Database $database
      * @return AbstractRepository
      */
-    public function setDatabase(DatabaseConnection $database): AbstractRepository
+    public function setDatabase(Database $database): AbstractRepository
     {
         $this->database = $database;
         return $this;
