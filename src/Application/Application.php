@@ -10,25 +10,38 @@ class Application
 {
     public function start()
     {
-        $container = new Container();
-        $method = Request::getRequestMethod();
-        $uri = Request::getRequestUri();
-        $routes = RouteConfig::getRoutes();
         $controllerClassName = NotFoundController::class;
         $actionName = NotFoundController::INDEX_ACTION;
-        foreach ($routes as $route) {
-            if ($route->getMethod() !== $method || $route->getUri() !== $uri) {
-                continue;
-            }
+        $route = $this->getRoute();
+        if ($route) {
             $controllerClassName = $route->getControllerClassName();
             $actionName = $route->getActionName();
         }
+        $container = new Container();
 
         $controller = $container->make($controllerClassName);
         /** @var Response $response */
         $response = $controller->{$actionName}();
-        http_response_code($response->getStatusCode());
 
-        require Directory::getViewDir() . $response->getTemplate();
+        $view = new View();
+        $view->handle($response);
+    }
+
+    /**
+     * @return false|Route
+     */
+    private function getRoute()
+    {
+        $method = Request::getRequestMethod();
+        $uri = Request::getRequestUri();
+        $routes = RouteConfig::getRoutes();
+        foreach ($routes as $route) {
+            if ($route->getMethod() !== $method || $route->getUri() !== $uri) {
+                continue;
+            }
+            return $route;
+        }
+
+        return false;
     }
 }

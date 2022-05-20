@@ -33,7 +33,14 @@ class Request
 
     public function getRequestBody()
     {
-        return [];
+        return file_get_contents('php://input');
+    }
+
+    public function getRequestJsonBody()
+    {
+        $data = file_get_contents('php://input');
+
+        return json_decode($data, true);
     }
 
     public function isGet(): bool

@@ -12,7 +12,7 @@ class UserRepository extends AbstractRepository
      * @param string $username
      * @return User
      */
-    public function findUserByUserName(string $username): User
+    public function findUserByUserName(string $username): ?User
     {
         $result = $this->getDatabase()
             ->select('*')
@@ -20,6 +20,9 @@ class UserRepository extends AbstractRepository
             ->where('username = :username')
             ->setParameter('username', $username)
             ->getResult();
+        if (!$result) {
+            return null;
+        }
 
         $user = new User();
         $user->setPassword($result['password'])

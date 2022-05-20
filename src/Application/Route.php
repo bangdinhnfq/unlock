@@ -2,6 +2,8 @@
 
 namespace Bangdinhnfq\Unlock\Application;
 
+use Bangdinhnfq\Unlock\Http\Request;
+
 class Route
 {
     /**
@@ -36,6 +38,50 @@ class Route
         $this->setUri($uri);
         $this->setControllerClassName($controllerClassName);
         $this->setActionName($actionName);
+    }
+
+    /**
+     * @param string $uri
+     * @param string $controllerClassName
+     * @param string $actionName
+     * @return Route
+     */
+    public static function post(string $uri, string $controllerClassName, string $actionName): Route
+    {
+        return new static(Request::METHOD_POST, $uri, $controllerClassName, $actionName);
+    }
+
+    /**
+     * @param string $uri
+     * @param string $controllerClassName
+     * @param string $actionName
+     * @return Route
+     */
+    public static function get(string $uri, string $controllerClassName, string $actionName): Route
+    {
+        return new static(Request::METHOD_GET, $uri, $controllerClassName, $actionName);
+    }
+
+    /**
+     * @param string $uri
+     * @param string $controllerClassName
+     * @param string $actionName
+     * @return Route
+     */
+    public static function put(string $uri, string $controllerClassName, string $actionName): Route
+    {
+        return new static(Request::METHOD_PUT, $uri, $controllerClassName, $actionName);
+    }
+
+    /**
+     * @param string $uri
+     * @param string $controllerClassName
+     * @param string $actionName
+     * @return Route
+     */
+    public static function delete(string $uri, string $controllerClassName, string $actionName): Route
+    {
+        return new static(Request::METHOD_DELETE, $uri, $controllerClassName, $actionName);
     }
 
     /**

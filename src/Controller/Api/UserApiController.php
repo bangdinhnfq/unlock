@@ -36,10 +36,10 @@ class UserApiController extends AbstractApiController
     /**
      * @return Response
      */
-    public function loginAction(): Response
+    public function postLoginAction(): Response
     {
         try {
-            $params = $this->request->getFormParams();
+            $params = $this->request->getRequestJsonBody();
             $userTransfer = new UserTransfer();
             $userTransfer->fromArray($params);
             $this->userValidator->validate($userTransfer);
@@ -47,7 +47,7 @@ class UserApiController extends AbstractApiController
             $data = $this->transformer->transform($user);
             return $this->response->success($data);
         } catch (ValidationException|UserNotFoundException|PasswordInvalidException $exception) {
-            return $this->response->error();
+            return $this->response->error($exception->getMessage());
         }
     }
 }
