@@ -8,32 +8,30 @@ class DatabaseConnection
 
     public static function getConnection(): DatabaseConnection
     {
-        if (static::$connection) {
+        if (empty(static::$connection)) {
             static::$connection = new static();
         }
 
         return static::$connection;
     }
 
-    public function select(string $string)
-    {
-
-        return static::$connection;
-    }
-
-    public function from()
+    public function select(string $string): DatabaseConnection
     {
         return static::$connection;
     }
 
-    public function where()
+    public function from(string $string): DatabaseConnection
     {
         return static::$connection;
     }
 
-    public function delete()
+    public function where(array $data): DatabaseConnection
     {
-        echo 'Delete user';
+        return static::$connection;
+    }
+
+    public function delete(): DatabaseConnection
+    {
         return static::$connection;
     }
 }
