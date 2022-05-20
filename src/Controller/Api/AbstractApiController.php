@@ -6,8 +6,4 @@ use Bangdinhnfq\Unlock\Controller\AbstractController;
 
 abstract class AbstractApiController extends AbstractController
 {
-    protected function success(bool $user)
-    {
-
-    }
 }

@@ -2,9 +2,7 @@
 
 namespace Bangdinhnfq\Unlock\Application;
 
-use Bangdinhnfq\Unlock\Controller\HomeController;
 use Bangdinhnfq\Unlock\Controller\NotFoundController;
-use Bangdinhnfq\Unlock\Controller\UserLoginController;
 use Bangdinhnfq\Unlock\Http\Request;
 use Bangdinhnfq\Unlock\Http\Response;
 

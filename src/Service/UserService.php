@@ -37,7 +37,7 @@ class UserService
         }
         $hashedPassword = $user->getPassword();
         $plainPassword = $userTransfer->getPassword();
-        if (!$this->checkPassword($hashedPassword, $plainPassword)) {
+        if (!$this->checkPassword( $hashedPassword, $plainPassword)) {
             throw new PasswordInvalidException();
         }
 
