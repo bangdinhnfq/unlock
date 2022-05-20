@@ -1,6 +1,7 @@
 <?php
 
 namespace Bangdinhnfq\Unlock\Application;
+
 use Closure;
 use Exception;
 use ReflectionClass;
@@ -17,7 +18,7 @@ class Container
      * @param $abstract
      * @param $concrete
      */
-    public function bind($abstract, $concrete = NULL)
+    public function bind($abstract, $concrete = null)
     {
         if (is_null($concrete)) {
             $concrete = $abstract;
@@ -83,16 +84,15 @@ class Container
 
         foreach ($parameters as $parameter) {
             $dependency = $parameter->getClass();
-
-            if (is_null($dependency)) {
-                if ($parameter->isDefaultValueAvailable()) {
-                    $dependencies[] = $parameter->getDefaultValue();
-                } else {
-                    throw new Exception("Can not resolve dependency {$parameter->name}");
-                }
-            } else {
+            if (!is_null($dependency)) {
                 $dependencies[] = $this->make($dependency->name);
+                continue;
             }
+            if ($parameter->isDefaultValueAvailable()) {
+                $dependencies[] = $parameter->getDefaultValue();
+                continue;
+            }
+            throw new Exception("Can not resolve dependency {$parameter->name}");
         }
 
         return $dependencies;

@@ -32,12 +32,12 @@ class UserService
     public function login(UserTransfer $userTransfer): User
     {
         $user = $this->userRepository->findUserByUserName($userTransfer->getUsername());
-        if (!$user) {
+        if (empty($user)) {
             throw new UserNotFoundException();
         }
         $hashedPassword = $user->getPassword();
         $plainPassword = $userTransfer->getPassword();
-        if (!$this->checkPassword( $hashedPassword, $plainPassword)) {
+        if (!$this->checkPassword($hashedPassword, $plainPassword)) {
             throw new PasswordInvalidException();
         }
 

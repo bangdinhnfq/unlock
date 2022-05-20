@@ -41,7 +41,7 @@ class UserLoginController extends AbstractController
     /**
      * @return Response
      */
-    public function loginAction(): Response
+    public function getLoginAction(): Response
     {
         $template = 'user/login.php';
         if ($this->request->isGet()) {

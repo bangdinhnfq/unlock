@@ -6,7 +6,7 @@ use Bangdinhnfq\Unlock\Http\Response;
 
 class HomeApiController extends AbstractApiController
 {
-    public function indexAction(): Response
+    public function getIndexAction(): Response
     {
         return $this->response->success(
             [

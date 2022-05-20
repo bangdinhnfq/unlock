@@ -9,7 +9,7 @@ class HomeController extends AbstractController
     /**
      * @return Response
      */
-    public function indexAction(): Response
+    public function getIndexAction(): Response
     {
         $template = 'home/index.php';
 

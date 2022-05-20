@@ -2,8 +2,6 @@
 
 namespace Bangdinhnfq\Unlock\Http;
 
-use Bangdinhnfq\Unlock\Transformer\TransformerInterface;
-
 class Response
 {
     const HTTP_STATUS_OK = 200;
@@ -16,14 +14,24 @@ class Response
     protected int $statusCode;
 
     /**
-     * @var string
+     * @var string|null
      */
-    protected string $template;
+    protected ?string $template = null;
 
     /**
      * @var array
      */
-    protected array $options;
+    protected array $options = [];
+
+    /**
+     * @var string|null
+     */
+    protected ?string $data = null;
+
+    /**
+     * @var array
+     */
+    protected array $headers = [];
 
     /**
      * @param int $statusCode
@@ -42,26 +50,37 @@ class Response
 
     public function success(array $data = [], $statusCode = Response::HTTP_STATUS_OK): Response
     {
-        $response = [
+        $data = [
             'status' => 'success',
             'data' => $data
         ];
-        http_response_code($statusCode);
-        header('Content-Type: application/json; charset=utf-8');
-        echo json_encode($response);
-        die;
+        $this->statusCode = $statusCode;
+        $this->headers = array_merge($this->headers, [
+            'Content-Type' => 'application/json'
+        ]);
+        $this->data = json_encode($data);
+
+        return $this;
     }
 
-    public function error($message = 'Some thing wrong', $statusCode = Response::HTTP_STATUS_BAD_REQUEST): Response
+    /**
+     * @param string|null $message
+     * @param int $statusCode
+     * @return $this
+     */
+    public function error(?string $message = 'Some thing wrong', int $statusCode = Response::HTTP_STATUS_BAD_REQUEST): Response
     {
-        $response = [
+        $data = [
             'status' => 'error',
             'message' => $message
         ];
-        http_response_code($statusCode);
-        header('Content-Type: application/json; charset=utf-8');
-        echo json_encode($response);
-        die;
+        $this->statusCode = $statusCode;
+        $this->headers = array_merge($this->headers, [
+            'Content-Type' => 'application/json'
+        ]);
+        $this->data = json_encode($data);
+
+        return $this;
     }
 
     public function redirect(string $route): Response
@@ -88,18 +107,18 @@ class Response
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTemplate(): string
+    public function getTemplate(): ?string
     {
         return $this->template;
     }
 
     /**
-     * @param string $template
+     * @param string|null $template
      * @return Response
      */
-    public function setTemplate(string $template): Response
+    public function setTemplate(?string $template): Response
     {
         $this->template = $template;
         return $this;
@@ -120,6 +139,42 @@ class Response
     public function setOptions(array $options): Response
     {
         $this->options = $options;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getData(): ?string
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param string|null $data
+     * @return Response
+     */
+    public function setData(?string $data): Response
+    {
+        $this->data = $data;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHeaders(): array
+    {
+        return $this->headers;
+    }
+
+    /**
+     * @param array $headers
+     * @return Response
+     */
+    public function setHeaders(array $headers): Response
+    {
+        $this->headers = $headers;
         return $this;
     }
 }

@@ -16,9 +16,11 @@ class UserValidator implements ValidatorInterface
     public function validate(TransferInterface $transfer): bool
     {
         if (empty($transfer->getUsername())) {
-            throw new ValidationException('User not found');
+            throw new ValidationException('username is required');
         }
-
+        if (empty($transfer->getPassword())) {
+            throw new ValidationException('username is required');
+        }
         return true;
     }
 }
