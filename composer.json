@@ -1,0 +1,26 @@
+{
+  "name": "bangdinhnfq/unlock",
+  "description": "Unlock website",
+  "autoload": {
+    "psr-4": {
+      "Bangdinhnfq\\Unlock\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "prs-4": {
+      "Bangdinhnfq\\Unlock\\Tests\\": "tests/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Bang Dinh",
+      "email": "bang.dinh@nfq.asia"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "^9"
+  },
+  "require": {
+    "ext-json": "*"
+  }
+}
