@@ -6,6 +6,10 @@ use DateTime;
 
 class User implements ModelInterface
 {
+    public const ROLE_GUEST = 'ROLE_GUEST';
+    public const ROLE_MEMBER = 'ROLE_MEMBER';
+    public const ROLE_ADMIN = 'ROLE_ADMIN';
+
     /**
      * @var int
      */
@@ -20,6 +24,11 @@ class User implements ModelInterface
      * @var string
      */
     private string $username;
+
+    /**
+     * @var string
+     */
+    private string $role;
 
     /**
      * @var string
@@ -82,6 +91,24 @@ class User implements ModelInterface
     public function setUsername(string $username): User
     {
         $this->username = $username;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     * @return User
+     */
+    public function setRole(string $role): User
+    {
+        $this->role = $role;
         return $this;
     }
 

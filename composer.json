@@ -21,6 +21,8 @@
     "phpunit/phpunit": "^9"
   },
   "require": {
-    "ext-json": "*"
+    "ext-json": "*",
+    "monolog/monolog": "^2.6",
+    "firebase/php-jwt": "^6.2"
   }
 }

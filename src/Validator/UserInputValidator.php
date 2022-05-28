@@ -6,7 +6,7 @@ use Bangdinhnfq\Unlock\Exception\ValidationException;
 use Bangdinhnfq\Unlock\Transfer\TransferInterface;
 use Bangdinhnfq\Unlock\Transfer\UserTransfer;
 
-class UserValidator implements ValidatorInterface
+class UserInputValidator implements ValidatorInterface
 {
     /**
      * @param UserTransfer $transfer
@@ -19,7 +19,7 @@ class UserValidator implements ValidatorInterface
             throw new ValidationException('username is required');
         }
         if (empty($transfer->getPassword())) {
-            throw new ValidationException('username is required');
+            throw new ValidationException('password is required');
         }
         return true;
     }

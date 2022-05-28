@@ -16,6 +16,10 @@ class View
         if (!empty($response->getTemplate())) {
             require Directory::getViewDir() . $response->getTemplate();
         }
+        foreach ($response->getHeaders() as $key => $value){
+            $header = $key. ': ' . $value;
+            header($header);
+        }
         if(!empty($response->getData())){
             echo $response->getData();
         }
