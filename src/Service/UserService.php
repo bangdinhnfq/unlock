@@ -48,4 +48,9 @@ class UserService
     {
         return true;
     }
+
+    public function getUserByUserId($userId): User
+    {
+        return new User();
+    }
 }

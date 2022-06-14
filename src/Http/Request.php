@@ -15,7 +15,7 @@ class Request
      */
     public static function getRequestMethod(): string
     {
-        return $_SERVER['REQUEST_METHOD'];
+        return $_SERVER['REQUEST_METHOD'] ?? self::METHOD_GET;
     }
 
     /**
@@ -23,7 +23,7 @@ class Request
      */
     public static function getRequestUri(): string
     {
-        return $_SERVER['REQUEST_URI'];
+        return $_SERVER['REQUEST_URI'] ?? '/';
     }
 
     public function getFormParams()
@@ -46,5 +46,10 @@ class Request
     public function isGet(): bool
     {
         return true;
+    }
+
+    public function getTokenHeader()
+    {
+        return $_SERVER['HTTP_AUTHORIZATION'] ?? null;
     }
 }

@@ -7,28 +7,31 @@ use Bangdinhnfq\Unlock\Exception\UserNotFoundException;
 use Bangdinhnfq\Unlock\Exception\ValidationException;
 use Bangdinhnfq\Unlock\Http\Request;
 use Bangdinhnfq\Unlock\Http\Response;
+use Bangdinhnfq\Unlock\Service\LoggerService;
 use Bangdinhnfq\Unlock\Service\SessionService;
 use Bangdinhnfq\Unlock\Service\UserService;
 use Bangdinhnfq\Unlock\Transfer\UserTransfer;
-use Bangdinhnfq\Unlock\Validator\UserValidator;
+use Bangdinhnfq\Unlock\Validator\UserInputValidator;
 
 class UserLoginController extends AbstractController
 {
-    private UserValidator $userValidator;
+    const TEMPLATE = 'user/login.php';
+
+    private UserInputValidator $userValidator;
     private UserService $userService;
     private SessionService $sessionService;
 
     /**
      * @param Request $request
      * @param Response $response
-     * @param UserValidator $userValidator
+     * @param UserInputValidator $userValidator
      * @param UserService $userService
      * @param SessionService $sessionService
      */
     public function __construct(
         Request $request,
         Response $response,
-        UserValidator $userValidator,
+        UserInputValidator $userValidator,
         UserService $userService,
         SessionService $sessionService
     ) {
@@ -43,12 +46,17 @@ class UserLoginController extends AbstractController
      */
     public function getLoginAction(): Response
     {
-        $template = 'user/login.php';
-        if ($this->request->isGet()) {
-            return $this->response->view($template);
-        }
+        return $this->response->view(static::TEMPLATE);
+    }
+
+    /**
+     * @return Response
+     */
+    public function postLoginAction(): Response
+    {
         try {
             $params = $this->request->getFormParams();
+            LoggerService::getLogger()->info(json_encode($params));
             $userTransfer = new UserTransfer();
             $userTransfer->fromArray($params);
             $this->userValidator->validate($userTransfer);
@@ -57,7 +65,7 @@ class UserLoginController extends AbstractController
             return $this->response->redirect('/');
         } catch (PasswordInvalidException|ValidationException|UserNotFoundException $exception) {
             return $this->response->view(
-                $template,
+                static::TEMPLATE,
                 [
                     'message' => $exception->getMessage(),
                 ],
