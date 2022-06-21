@@ -12,3 +12,6 @@ jobs:
 
       - name: Psalm Security Scan
         uses: docker://ghcr.io/psalm/psalm-security-scan
+
+      - name: Psalm
+        uses: docker://vimeo/psalm-github-actions
