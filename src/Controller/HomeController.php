@@ -15,4 +15,9 @@ class HomeController extends AbstractController
 
         return $this->response->view($template);
     }
+
+    public function getIndex()
+    {
+
+    }
 }
