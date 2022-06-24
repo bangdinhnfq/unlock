@@ -11,7 +11,7 @@ class HomeController extends AbstractController
      */
     public function getIndexAction(): Response
     {
-        $template = 'home/index.php';
+        $template = 'home/index.php'; // change 2
 
         return $this->response->view($template);
     }
