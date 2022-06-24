@@ -23,6 +23,7 @@
   "require": {
     "ext-json": "*",
     "monolog/monolog": "^2.6",
-    "firebase/php-jwt": "^6.2"
+    "firebase/php-jwt": "^6.2",
+    "phpmailer/phpmailer": "^6.6"
   }
 }
